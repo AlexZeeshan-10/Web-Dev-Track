@@ -187,7 +187,7 @@ export function Lectures() {
         <div className="flex items-center gap-4 p-4 border-b border-border/50 bg-muted/20 text-base font-medium text-muted-foreground">
           <div className="flex-1 pl-2">Lecture Name</div>
           <div className="w-24 text-right">Duration</div>
-          <div className="w-32 text-center hidden sm:block">Status</div>
+          <div className="w-32 text-center">Status</div>
           <div className="w-16 text-right">Actions</div>
         </div>
 
@@ -224,7 +224,7 @@ export function Lectures() {
                     {formatDuration(lecture.duration)}
                   </div>
 
-                  <div className="w-32 text-center hidden sm:block">
+                  <div className="w-32 text-center">
                     <Select
                       value={lecture.status}
                       onValueChange={(val) => handleStatusChange(lecture.id, val as LectureStatus)}
@@ -246,23 +246,6 @@ export function Lectures() {
                     </Select>
                   </div>
 
-                  {/* Mobile status toggle (visible below sm breakpoint) */}
-                  <div className="sm:hidden flex items-center gap-2 px-4 pb-2">
-                    <button
-                      className={`status-cycle-btn flex-1 h-8 rounded-md text-xs font-medium border cursor-pointer ${
-                        lecture.status === 'completed' ? 'bg-green-500/10 text-green-500 border-green-500/20' :
-                        lecture.status === 'in-progress' ? 'bg-yellow-500/10 text-yellow-500 border-yellow-500/20' :
-                        lecture.status === 'revision' ? 'bg-orange-500/10 text-orange-500 border-orange-500/20' :
-                        'bg-background text-muted-foreground border-border/50'
-                      }`}
-                      onClick={() => cycleStatus(lecture.id, lecture.status)}
-                    >
-                      {lecture.status === 'not-started' ? 'Not Started' :
-                       lecture.status === 'in-progress' ? 'In Progress' :
-                       lecture.status === 'completed' ? 'Completed' : 'Revision'}
-                      <span className="ml-1 text-muted-foreground">↻</span>
-                    </button>
-                  </div>
 
                   <div className="w-16 flex items-center justify-end gap-1">
                     <Button
